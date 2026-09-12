@@ -1,0 +1,28 @@
+# ===== OS / IDE =====
+.DS_Store
+.idea/
+.vscode/
+
+# ===== Secrets (실제 값이 든 env 파일은 커밋 금지) =====
+.env
+.env.local
+.env.*.local
+back/.env
+# 예시/템플릿은 커밋 허용
+!.env.example
+!**/.env.example
+
+# ===== Python (backend) =====
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+back/.venv/
+*.egg-info/
+
+# ===== Node / Vite (frontend) =====
+node_modules/
+**/node_modules/
+front/hotel_f/dist/
+dist/
+*.log
