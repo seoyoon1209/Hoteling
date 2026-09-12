@@ -6,6 +6,7 @@
 
 Hoteling developed an AI service platform that predicts whether a hotel reservation is likely to be canceled. For hotel operators, reservation cancellations are a major source of uncertainty that directly affects occupancy and revenue. As soon as a new reservation is received, the platform analyzes a wide range of historical and external data to estimate the probability of cancellation. These predictions enable hotel managers to optimize overbooking strategies based on expected cancellation rates. Ultimately, the platform helps maximize occupancy, improve operational efficiency, and increase overall profitability.
 
+
 Hotel booking cancellations create uncertainty in room inventory management, customer service, room resale planning, and expected revenue. When hotel staff manage many reservations at the same time, it can be difficult to consistently determine which bookings require attention first.
 
 If a possible cancellation is identified too late, staff have less time to confirm the reservation with the guest or prepare the room for resale. Manually reviewing every reservation also takes considerable time and can lead to inconsistent decisions among staff members.
@@ -72,132 +73,14 @@ A cancellation-class recall of 50% means that the model identifies approximately
 
 ## Technologies Used
 
-- **AI/ML:** Google Cloud AutoML (final model served as a TensorFlow SavedModel)
-- **Frontend:** React 19, Vite, React Router, Tailwind CSS, Axios
-- **Backend:** Python and FastAPI (Uvicorn, asyncpg)
+- **AI/ML:** Google Cloud AutoML
+- **Frontend:** React
+- **Backend:** Python and FastAPI
 - **Database:** PostgreSQL
 - **Data processing and analysis:** SAS, Microsoft Excel, and CSV
 - **Deployment platform:** Render
   - Hosted on Render: React frontend, FastAPI backend web server, and PostgreSQL database server
 - **Development tools:** IntelliJ IDEA, PyCharm, and Claude Code
-
----
-
-## Project Structure
-
-This repository combines the Hoteling frontend and backend into a single project.
-
-```
-Hoteling/
-├── front/
-│   └── hotel_f/              # React + Vite app
-│       ├── index.html
-│       ├── vite.config.js
-│       ├── tailwind.config.cjs
-│       ├── render.yaml       # frontend deployment config
-│       ├── public/
-│       └── src/              # components, pages, API clients
-│
-└── back/                     # FastAPI + ML API
-    ├── main.py               # app, CORS, router registration
-    ├── requirements.txt
-    ├── runtime.txt
-    ├── .env.example          # environment variable template
-    ├── router/               # API routers by domain
-    ├── db/                   # dbpool, schema.sql, migrations
-    ├── ml/                   # features, predictor (inference logic)
-    ├── ml_model/             # trained AutoML / TensorFlow model
-    ├── ai/                   # insight.py (OpenAI insights)
-    └── settings/Settings.py  # configuration (.env loader)
-```
-
----
-
-## Getting Started
-
-### 1. Clone
-
-```bash
-git clone https://github.com/seoyoon1209/Hoteling.git
-cd Hoteling
-```
-
-### 2. Backend
-
-```bash
-cd back
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-
-# configure environment variables
-cp .env.example .env          # fill in the values (see table below)
-
-uvicorn main:app --reload     # http://localhost:8000, API docs at /docs
-```
-
-### 3. Frontend
-
-```bash
-cd front/hotel_f
-npm install
-
-# point the frontend at the backend
-echo "VITE_API_BASE=http://localhost:8000" > .env
-
-npm run dev                   # http://localhost:5173
-```
-
-### Database initialization
-
-```bash
-psql -f back/db/schema.sql
-psql -f back/db/migration_002_reservation_action.sql   # if needed
-```
-
----
-
-## Environment Variables
-
-### Backend (`back/.env`)
-
-Copy `back/.env.example`. The real `.env` is excluded from version control by `.gitignore`.
-
-| Variable | Description |
-| --- | --- |
-| `DB_HOST` | Database host |
-| `DB_PORT` | Database port |
-| `DB_SERVICE_NAME` | Database (service) name |
-| `DB_USER` | Database user |
-| `DB_PASSWORD` | Database password |
-| `OPENAI_API_KEY` | OpenAI API key (AI insight feature) |
-| `OPENAI_MODEL` | Model name (default `gpt-4o`) |
-
-### Frontend (`front/hotel_f/.env`)
-
-| Variable | Description | Example |
-| --- | --- | --- |
-| `VITE_API_BASE` | Backend API base URL | `http://localhost:8000` |
-
----
-
-## API Overview
-
-All endpoints are served under the `/api` prefix (e.g. `/api/reservations`).
-
-| Domain | Prefix |
-| --- | --- |
-| Hotels | `/hotels` |
-| Customers | `/customers` |
-| Room types | `/room-types` |
-| Reservations | `/reservations`, `/reservations/{id}` |
-| Predictions | `/reservations/{id}/predictions` |
-| AI insight | `/reservations/{id}/ai-insight` |
-| Reservation actions | `/reservations/{id}/actions` |
-| Action reports | `/actions/report`, `/actions/export` |
-| Overbooking | `/overbooking/summary` |
-| Model info | `/model-info` |
-
-> The full specification is available at `/docs` (Swagger UI) once the backend is running.
 
 ---
 
@@ -236,12 +119,11 @@ The following features are implemented:
 ## Project Links and Repositories
 
 - **Live Demo:** https://smsf-0pzo.onrender.com/
+- **GitHub — Frontend:** https://github.com/seoyoon1209/HotelF
+- **GitHub — Backend:** https://github.com/seoyoon1209/HotelB
 - **Demo Video:** https://youtu.be/gfzcn6mdDqg
-- **This repository (combined frontend + backend):** https://github.com/seoyoon1209/Hoteling
-- **Original Frontend repository:** https://github.com/seoyoon1209/HotelF
-- **Original Backend repository:** https://github.com/seoyoon1209/HotelB
 
-> This repository combines the Hoteling **frontend (React)** and **backend (FastAPI)** into a single project and serves as the **main documentation for the overall project**. The original separate repositories (HotelF, HotelB) remain available for reference.
+> This repository is the **frontend** of Hoteling and serves as the **main documentation for the overall project**. For backend (FastAPI) source code, see the [Backend repository](https://github.com/seoyoon1209/HotelB).
 
 ---
 
