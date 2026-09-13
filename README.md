@@ -119,8 +119,6 @@ The following features are implemented:
 ## Project Links and Repositories
 
 - **Live Demo:** https://smsf-0pzo.onrender.com/
-- **GitHub — Frontend:** https://github.com/seoyoon1209/HotelF
-- **GitHub — Backend:** https://github.com/seoyoon1209/HotelB
 - **Demo Video:** https://youtu.be/gfzcn6mdDqg
 
 > This repository is the **frontend** of Hoteling and serves as the **main documentation for the overall project**. For backend (FastAPI) source code, see the [Backend repository](https://github.com/seoyoon1209/HotelB).
